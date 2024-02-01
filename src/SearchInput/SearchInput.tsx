@@ -1,10 +1,11 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Input from "../UIComponents/Input/Input";
 import "./SearchInput.css";
-import { NO_RESULTS_FOUND, getMatchedOption } from "../utils/util";
+import { getMatchedOption } from "../utils/util";
 import useDebounce from "../hooks/useDebounce";
 import Loader from "../Loader/Loader";
 import useFetch from "../hooks/useFetch";
+import { NO_RESULTS_FOUND } from "../constants";
 
 export interface Option {
     name: string,

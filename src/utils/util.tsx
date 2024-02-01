@@ -1,4 +1,4 @@
-import { Option } from "../SearchInput/SearchInput";
+import { ChangeEvent } from "react";
 
 const styleMatchedCharcters = (matchedCharacters: string): JSX.Element => {
     return <strong className="matched-words" >{matchedCharacters}</strong>
@@ -43,24 +43,20 @@ const getMatchedOption = (searchString: string, option: string, index: number): 
 
 const debounce = (fn: Function, delay: number): Function => {
     let timerId: number | ReturnType<typeof setTimeout> | undefined;
-    return (...args: any[]) => {
+    return (args: ChangeEvent) => {
         if (timerId) {
             return;
         }
         timerId = setTimeout(() => {
-            fn(...args);
+            fn(args);
             clearTimeout(timerId)
             timerId = undefined
         }, delay)
     }
 }
 
-const NO_RESULTS_FOUND: string = 'No results found';
-const LOADING_MESSAGE: string = 'Fetching results...';
 
 export {
     getMatchedOption,
-    debounce,
-    NO_RESULTS_FOUND,
-    LOADING_MESSAGE
+    debounce
 }

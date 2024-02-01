@@ -1,6 +1,6 @@
 import { FC } from "react";
 import "./Loader.css";
-import { LOADING_MESSAGE } from "../utils/util";
+import { LOADING_MESSAGE } from "../constants";
 
 
 interface LoaderProps {

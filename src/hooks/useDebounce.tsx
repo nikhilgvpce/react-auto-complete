@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useMemo, useRef } from "react";
 import { debounce } from "../utils/util";
-
-const delay: number = 300;
+import { DEBOUNCE_DELAY } from "../constants";
 
 // Took reference from : https://www.developerway.com/posts/debouncing-in-react to
 // write below useDebounce hook as this takes a callback function and calls it in
@@ -21,7 +20,7 @@ const useDebounce = (callback: Function) => {
         const func = (args: ChangeEvent) => {
             ref.current?.(args);
         }
-        return debounce(func, delay)
+        return debounce(func, DEBOUNCE_DELAY)
     }, [])
 
     return memoisedDebounce
