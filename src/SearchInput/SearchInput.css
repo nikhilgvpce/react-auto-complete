@@ -51,3 +51,7 @@ li:focus-within, li:hover {
     font-weight: 600;
     cursor: pointer;
 }
+
+.matched-words {
+    color: violet;
+}
