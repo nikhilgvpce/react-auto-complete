@@ -13,13 +13,13 @@ git clone https://github.com/nikhilgvpce/react-auto-complete.git
 cd react-auto-complete
 ```
 
-- Install dependencies
+- Install dependencies with the following command
 
 ```
 npm install
 ```
 
-- Run the application
+- Run the below command to start the application
 
 ```
 npm run dev
