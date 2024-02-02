@@ -63,6 +63,164 @@ Ans: When a component, which is child to a Parent Component, is deeply nested do
 
  In the above example when fragment is used and keys are not provided and there is a deletion in array it is hard for react to identitfy which element is deleted and there could be chance of breakage in the app when the array is quite large and subject to change quite frequently like in the case of ecommerce app where there can be millions of items in the display array and based on the user behaviour we might want to remove some items and replace them with the other.
 
- 
+ 6. Give 3 examples of the HOC pattern.
 
+ Ans: Higher order components are those which can accept components as their prop. Below are the examples of the HOC pattern:
+
+ (a): When multiple components needs to be passed to another component and need to be implemented generically we can make use of the HOC pattern as below 
+
+ Ex: const Header = () => {
+    return (
+        <>
+            <h4> Welcome to my e-cart! </h1>
+            <p>Buy, Sell anything</p>
+            <p>Get items at your finger tips</p>
+        </>
+    )
+
+    const Layout = ({children}) => {
+        return (
+            <div>
+                {children}
+                <Left/>
+                <Right/>
+            </div>
+        )
+    }
+
+    const App = () => {
+        return (
+            <Layout>
+                <Header/>
+                <PaymentInfo/>
+                <UserAnalytics>
+            </Layout>
+        )
+    }
+ }
+
+ In the above example, Layout follows HOC pattern as it accepts components, so it can not only render Header component but also other components like PaymentInfo, UserAnalytics.
+
+ (b): The "connect" in react-redux library also follows HOC pattern as it accepts a Component
+ as an input and passes in the updated props from parent, state from the store.
+
+ (c): The Styled component library also follows HOC pattern where in the ThemeProvider, passes the theme prop to all its children inside it by creating a context which is achieved by following this HOC pattern.
+
+(d): the component withRouter in react-router (version 5) is a higher component and takes in a component and passes the location, history data as props to it.
+
+7. What's the difference in handling exceptions in promises, callbacks and async…await?
+
+Ans: callbacks, promises and asyn&await are used to deal with the asynchronous code in Javascript. Before ES5, callbacks are used to enable the asynchronous behaviour and try catch blocks are used to handle the execeptions
+
+Ex: function getCartInfo(cb) {
+    const cartItems = {
+        [
+            itemId: 'd44fiui90a3',
+            price: '$45'
+        ],
+        [
+            itemId: 'i90dhuf89ae',
+            price: '$15'
+        ]
+    }
+    cb(cartItems);
+}
+
+function getPaymentInfo(cb) {
+    const paymentInfo = {
+        [
+            payment_info: 'credit card',
+            address: 'San Jose, California
+        ]
+    }
+    cb(paymentInfo)
+}
+
+function purchaseItemsInCart() {
+    getCartInfo()
+}
+
+
+8. How many arguments does setState take and why is it async.
+
+Ans: setState takes 1 arguments. 
+
+9. List the steps needed to migrate a Class to Function Component.
+
+Ans: To convert a Class component to a functional component we need to check for life cycle methods and state method used  and use respective hooks for functional components. Below is the way for converting life cycle methods to hooks:
+
+(a)componentDidMount() {} --> called after a component mounts in mount phase and runs only once.
+
+Below is the respective hook to be used to achieve the same in an functional component.
+
+```
+useEffect(() => {
+
+}, [])
+```
+
+(b): componentDidUpdate() {} --> called when a component gets updated in update phase
+
+Below is the respective hook to be used to achieve the same in an functional component. 
+The call back function is run for every change in deps array.
+
+```
+useEffect(() => {
+    // runs only when atleast one of dependencies change.
+}, [deps])
+```
+```
+useEffect(() => {
+// this will run for every render
+}) 
+```
+(c): componentWillUnmount() {} --> called when a component gets unmounted in unmount phase.
+
+Below is the respective hook to be used to achieve the same in an functional component. 
+
+```
+useEffect(() => {
+    return () => {
+        // this is run during component unmount
+    }
+}, [])
+```
+(d): Identify areas where "this" keyworkd is used and convert them to variables and make use of arrow functions in the functional components to lexically resolve their context.
+
+(e): If a class component has more than 3 state variables use "useReducer" to manage the state
+so that it clears the code clutter and we can dispatch the actions for state updates
+
+(f): To convert a Pure Class component to Functional component, wrap the component inside React.memo to achieve the same.
+
+10. List a few ways styles can be used with components.
+
+Ans: We can style a component using below ways
+
+(a): import css file into the component file and use classNames, html tags, selectors, ids
+
+to style the components
+
+```
+import "./home.css"
+```
+
+(b): We can use CSS-in-JS styled-components.
+
+```
+const Button = styled.button`
+    background-color: skyblue;
+    width: 10vw;
+    padding: 16px;
+`
+```
+
+(c) We can use inline styling where we can directly pass styles to components
+
+```
+const Input = () => {
+    return (
+        <input style={{color: 'red', padding: '16px', width: '10vw'}}>
+    )
+}
+```
 
